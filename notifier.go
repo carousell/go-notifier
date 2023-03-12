@@ -20,6 +20,10 @@ func NotifyWithLevel(err error, level string, rawData ...interface{}) error {
 	return GetNotifier().NotifyWithLevel(err, level, rawData...)
 }
 
+func NotifyOnPanic(rawData ...interface{}) {
+	GetNotifier().NotifyOnPanic(rawData...)
+}
+
 func NewNotifier(n Notifier) Notifier {
 	return n
 }

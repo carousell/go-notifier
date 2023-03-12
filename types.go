@@ -38,4 +38,5 @@ var (
 type Notifier interface {
 	Notify(err error, rawData ...interface{}) error
 	NotifyWithLevel(err error, level string, rawData ...interface{}) error
+	NotifyOnPanic(rawData ...interface{})
 }
