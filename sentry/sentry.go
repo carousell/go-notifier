@@ -2,8 +2,8 @@ package sentry
 
 import (
 	"context"
-	"github.com/carousell/logging"
-	"github.com/carousell/notifier"
+	"github.com/carousell/go-logging"
+	"github.com/carousell/go-notifier"
 	"github.com/getsentry/raven-go"
 	stdopentracing "github.com/opentracing/opentracing-go"
 	"runtime"

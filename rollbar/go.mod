@@ -1,10 +1,10 @@
-module github.com/carousell/notifier/rollbar
+module github.com/carousell/go-notifier/rollbar
 
 go 1.17
 
 require (
-	github.com/carousell/logging v0.0.0-20230309075505-59a42bd52f4d
-	github.com/carousell/notifier v0.0.0-20230309155041-160d6b1429b5
+	github.com/carousell/go-logging v0.0.0-20230322092536-a8bc95fb452c
+	github.com/carousell/go-notifier v0.0.0-20230322092849-62932b5112d8
 	github.com/opentracing/opentracing-go v1.2.0
 	github.com/stvp/rollbar v0.5.1
 )

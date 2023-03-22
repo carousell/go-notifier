@@ -2,8 +2,8 @@ package rollbar
 
 import (
 	"context"
-	"github.com/carousell/logging"
-	"github.com/carousell/notifier"
+	"github.com/carousell/go-logging"
+	"github.com/carousell/go-notifier"
 	stdopentracing "github.com/opentracing/opentracing-go"
 	"github.com/stvp/rollbar"
 	"strings"
