@@ -2,7 +2,7 @@ package notifier
 
 import (
 	"context"
-	"github.com/carousell/logging"
+	"github.com/carousell/go-logging"
 	stdopentracing "github.com/opentracing/opentracing-go"
 	"github.com/pborman/uuid"
 	"strings"

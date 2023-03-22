@@ -1,5 +1,5 @@
-github.com/carousell/logging v0.0.0-20230309075505-59a42bd52f4d h1:ZcJQIaTWq3GnyHGI85qeJ4rzXtOZlWqZW+c+a5YlD68=
-github.com/carousell/logging v0.0.0-20230309075505-59a42bd52f4d/go.mod h1:dZGZ2h6oCq6pTeiAkzUb787AVaJkj7K5KunorOa9wG4=
+github.com/carousell/go-logging v0.0.0-20230322092536-a8bc95fb452c h1:QUGL8uoMouh8qV917ydVI+P9nFN1l6EdGkyLDBiMTpo=
+github.com/carousell/go-logging v0.0.0-20230322092536-a8bc95fb452c/go.mod h1:rNIbSrWZ+PZyl3NJIC1g8UyFA1gjMJxHdBhqDFdNs1w=
 github.com/davecgh/go-spew v1.1.0/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c=
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=

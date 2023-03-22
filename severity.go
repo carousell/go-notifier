@@ -1,6 +1,6 @@
 package notifier
 
-import "github.com/carousell/logging"
+import "github.com/carousell/go-logging"
 
 func (s severity) String() string {
 	return string(s)
