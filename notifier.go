@@ -29,6 +29,11 @@ func NewNotifier(n Notifier) Notifier {
 }
 
 func GetNotifier() Notifier {
+	if defaultNotifier == nil {
+		mu.Lock()
+		defer mu.Unlock()
+		defaultNotifier = NewStdNotifier()
+	}
 	return defaultNotifier
 }
 
