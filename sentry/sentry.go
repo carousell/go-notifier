@@ -11,16 +11,60 @@ import (
 	stdopentracing "github.com/opentracing/opentracing-go"
 )
 
-func InitSentry(dsn string, env string) (*sentryNotifier, error) {
+func InitSentry(dsn string, opts ...SentryOption) (*sentryNotifier, error) {
 	client, err := raven.New(dsn)
 	if err != nil {
 		return nil, err
 	}
-	client.SetEnvironment(env)
+	for _, opt := range opts {
+		opt.apply(client)
+	}
 	return &sentryNotifier{
 		inited: true,
 		client: client,
 	}, nil
+}
+
+type SentryOption interface {
+	apply(*raven.Client)
+}
+
+func WithRelease(release string) SentryOption {
+	return releaseOption{release: release}
+}
+
+type releaseOption struct {
+	release string
+}
+
+func (r releaseOption) apply(c *raven.Client) {
+	c.SetRelease(r.release)
+}
+
+func WithTags(tags map[string]string) SentryOption {
+	return tagsOption{tags: tags}
+}
+
+type tagsOption struct {
+	tags map[string]string
+}
+
+func (t tagsOption) apply(c *raven.Client) {
+	for k, v := range t.tags {
+		c.Tags[k] = v
+	}
+}
+
+func WithEnvironment(env string) SentryOption {
+	return environmentOption{env: env}
+}
+
+type environmentOption struct {
+	env string
+}
+
+func (e environmentOption) apply(c *raven.Client) {
+	c.SetEnvironment(e.env)
 }
 
 type sentryNotifier struct {
