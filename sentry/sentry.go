@@ -2,19 +2,21 @@ package sentry
 
 import (
 	"context"
+	"runtime"
+	"strings"
+
 	"github.com/carousell/go-logging"
 	"github.com/carousell/go-notifier"
 	"github.com/getsentry/raven-go"
 	stdopentracing "github.com/opentracing/opentracing-go"
-	"runtime"
-	"strings"
 )
 
-func InitSentry(dsn string) (*sentryNotifier, error) {
+func InitSentry(dsn string, env string) (*sentryNotifier, error) {
 	client, err := raven.New(dsn)
 	if err != nil {
 		return nil, err
 	}
+	client.SetEnvironment(env)
 	return &sentryNotifier{
 		inited: true,
 		client: client,
