@@ -50,6 +50,9 @@ type tagsOption struct {
 }
 
 func (t tagsOption) apply(c *raven.Client) {
+	if c.Tags == nil {
+		c.Tags = make(map[string]string)
+	}
 	for k, v := range t.tags {
 		c.Tags[k] = v
 	}
