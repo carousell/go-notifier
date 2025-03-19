@@ -2,23 +2,72 @@ package sentry
 
 import (
 	"context"
+	"runtime"
+	"strings"
+
 	"github.com/carousell/go-logging"
 	"github.com/carousell/go-notifier"
 	"github.com/getsentry/raven-go"
 	stdopentracing "github.com/opentracing/opentracing-go"
-	"runtime"
-	"strings"
 )
 
-func InitSentry(dsn string) (*sentryNotifier, error) {
+func InitSentry(dsn string, opts ...SentryOption) (*sentryNotifier, error) {
 	client, err := raven.New(dsn)
 	if err != nil {
 		return nil, err
+	}
+	for _, opt := range opts {
+		opt.apply(client)
 	}
 	return &sentryNotifier{
 		inited: true,
 		client: client,
 	}, nil
+}
+
+type SentryOption interface {
+	apply(*raven.Client)
+}
+
+func WithRelease(release string) SentryOption {
+	return releaseOption{release: release}
+}
+
+type releaseOption struct {
+	release string
+}
+
+func (r releaseOption) apply(c *raven.Client) {
+	c.SetRelease(r.release)
+}
+
+func WithTags(tags map[string]string) SentryOption {
+	return tagsOption{tags: tags}
+}
+
+type tagsOption struct {
+	tags map[string]string
+}
+
+func (t tagsOption) apply(c *raven.Client) {
+	if c.Tags == nil {
+		c.Tags = make(map[string]string)
+	}
+	for k, v := range t.tags {
+		c.Tags[k] = v
+	}
+}
+
+func WithEnvironment(env string) SentryOption {
+	return environmentOption{env: env}
+}
+
+type environmentOption struct {
+	env string
+}
+
+func (e environmentOption) apply(c *raven.Client) {
+	c.SetEnvironment(e.env)
 }
 
 type sentryNotifier struct {
