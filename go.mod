@@ -15,5 +15,5 @@ require (
 	github.com/google/uuid v1.3.0 // indirect
 	github.com/stretchr/testify v1.4.0 // indirect
 	google.golang.org/genproto v0.0.0-20230110181048-76db0878b65f // indirect
-	google.golang.org/protobuf v1.28.1 // indirect
+	google.golang.org/protobuf v1.33.0 // indirect
 )
